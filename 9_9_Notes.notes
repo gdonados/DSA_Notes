@@ -1,0 +1,54 @@
+[2022-09-09]
+==> !Notes! <==
+=> *Java/C++ Differences* <=
+- In C++, objects are allocated either statically or dynamically
+    - Java, instances of classes can only be allocated *dynamically*
+    [c]
+    //Static typing:
+    Elephant e;
+
+    //Dynamic typing (in c++):
+    Elephant *e;
+    e = new Elephant();
+    [end]
+
+- In C++, classes need both a constructor and a desctructor
+    - In Java, the garbage collector takes care of memory cleanup
+
+=> *Java Allocation* <=
+- Creating an array with a primitve fills the array with 0's
+    - Last index is assigned at *array.length-1* 
+    [java]
+    int [] array;
+    array = new array[10];
+    //Array is filled with 0's
+    [end]
+
+- Creating an array with a reference type fills the array with null
+    [java]
+    String[] array;
+    array = new String[10];
+    //Array is filled with 10 null references
+    [end]
+    
+- With 32-bit representation, only 4G of data can be represented
+- Any *reference type* is only *4 bytes*
+
+=> *Java Statements* <=
+- Static data fields belong to the Class, not any instance
+    - Any change to a static field will be represented in each instance
+- String pool:
+    - Identical string literals will be reference in the *String Pool*
+    - Using the *new* keyword will create a separate string outside of the stirng pool
+    - Strings are immutabel, assigning a new literal will delete the old object
+- Identifiers:
+    - Variables
+    - Method names
+    - Class names
+- Memory limitation is determined by the amount of addresses can be created
+    - On a 32-bit processor, only 4 gigs can be addressed
+- 
+
+==> !TODO! <==
+[!] Review assigment due 9/16
+[!] Highlight review frame summary
