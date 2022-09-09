@@ -47,7 +47,10 @@
     - Class names
 - Memory limitation is determined by the amount of addresses can be created
     - On a 32-bit processor, only 4 gigs can be addressed
-- 
+- Switch Statements:
+    - Can be used with discrete types
+    - !Long and float are not discrete!, cannot be used with switch
+    - 
 
 ==> !TODO! <==
 [!] Review assigment due 9/16
