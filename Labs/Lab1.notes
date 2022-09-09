@@ -1,0 +1,28 @@
+==> Lab 1 Notes <==
+-> Lab 1 Link: http://elvis.rowan.edu/~hristescu/classes/dsa/Lab1.htm <-
+- Use the correct types, use Integer.parseInt() to convert
+- To read input into program/output:    
+    - >> appends
+    - < reads in
+    - > overwrites
+    - Example:
+        - java DrHsHelloClass < donados_input1.txt > donados_output.txt
+            - Outputs to donados_output.txt, overwrites
+        - java DrHsHelloClass < donados_input2.txt >> donados_output.txt
+            - Appends
+    
+- Problem 1 Notes:
+    - Echo inputs
+    - Pay attention to the string Outputs
+    - Build the string and print all at once
+        - Get rid of the ifs
+        
+- Problem 2 notes:
+    - Multiply the number by the weight then add then divide by the sum of the weights
+    - Simple is normal mean
+    - No storing numbers
+
+- !Remeber to put in all headers!
+
+- Problem 3 notes:
+    - 
