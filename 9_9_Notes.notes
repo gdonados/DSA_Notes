@@ -50,7 +50,6 @@
 - Switch Statements:
     - Can be used with discrete types
     - !Long and float are not discrete!, cannot be used with switch
-    - 
 
 ==> !TODO! <==
 [!] Review assigment due 9/16
