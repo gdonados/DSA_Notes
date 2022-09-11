@@ -1,0 +1,10 @@
+/*
+ * Purpose: Data Structure and Algorithms Lab X Problem Y [instantiate X and Y]
+ * Status: Barely started/ Incomplete/ Complete and thoroughly tested [choose only one!!!]
+ * Last update: 09/01/21
+ * Submitted:  09/02/21
+ * Comment: test suite and sample run attached
+ * Comment: I declare that this is entirely my own work
+ * @author: John Doe [replace with your own first and last name]
+ * @version: 2021.09.01
+ */
