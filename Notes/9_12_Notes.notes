@@ -1,0 +1,68 @@
+[2022-09-12]
+==> !Notes! <==
+=> *Java Statements* <=
+- Not good to force break out of a loop or method
+- Don't use early returns in loops unfortunately
+
+=> *Inheritance/Polymorphism* <=
+- All classes extend Object
+- Java uses single inheritance, as opposed to C++ multiple inheritance
+    - Java classes can only inherit from 1 superclass
+- Left side of class instantiation is of *static type*
+    - Right side is *dynamic type*
+
+    [java]
+    A a = new B();
+    //A is static, B is dynamic, B extends A
+    [end]
+
+- Dynamic method dispatch chooses method functionality at run time
+    - If A and B have the same class, and B extends A, then B.method() is determined at run time
+
+=> *Abstract Data Type (ADT)* <=
+- An array is a data structure
+- Linear Collections are collections that can:
+    - Operations:
+        - Insert
+        - Retrieve
+        - Remove
+    - Any index or position in the collection
+        - This is the *List* ADT
+    - All operations are only one end
+        - This is the *Stack* ADT
+    - Retrieve and remove operations at the opposite end of insert
+        - I.e remove index 0 then insert at end
+        - This is the *Queue* ADT
+    - All operations on both ends
+        - This is the *Double Ended Queue (DEQ)* ADT
+- The List ADT:
+    - Operations are called add/get/remove
+    - Can *add* at any legal index
+        - [0, size()]
+            - This means you can insert one index past all existing indices
+        - Positions of the further indices shift right
+    - Can *get/remove* in range [0, size()-1]
+    - List is the only ADT that has size() functionality
+        - No parameters, returns int
+    - List ADT has an *isEmpty()* method
+        - No parameters, returns boolean
+    - void add(int index, Object item)
+        - Index of location, generic Object as parameters
+        - Returns void
+    - Object get(int index)
+        - Index of location for paramter
+        - Returns reference to object at location
+    - void remove(int index)
+        - Index of location for parameters
+        - Returns void
+            - Can return Object reference?
+    - void removeAll()
+        - No paramters
+        - Returns nothing
+    - Everything that requires an index throws an *IndexOutOfBoundsException*
+    - 
+
+==> !TODO! <==
+[√] Lab 1 due 9/13
+[!] Review Assignment due 9/16
+[!] Review frame due 9/19
