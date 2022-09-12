@@ -60,7 +60,6 @@
         - No paramters
         - Returns nothing
     - Everything that requires an index throws an *IndexOutOfBoundsException*
-    - 
 
 ==> !TODO! <==
 [√] Lab 1 due 9/13

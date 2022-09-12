@@ -26,3 +26,6 @@
 
 - Problem 3 notes:
     - Appending can go at either the beginning or the end
+    - !You can reverse with Iterator and ListIterator!
+    - !Use StringBuilder to insert at beginning, can use foreach functionality!
+    - 5 for disply, 6 for reverse with ListIterator, 1 for palindrome
