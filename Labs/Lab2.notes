@@ -1,0 +1,18 @@
+[2022-09-16]
+==> !Notes! <==
+- Functionality to add:
+    - overwrite add
+        - check if array is full
+        - write a new method called resize()
+            - for use in add()
+            - private void
+            - copy all items contents to temp array
+            - copy back into items
+            - double the size each time
+                - shift opertation
+        - after resize(), call super()
+    - implement toString()
+    - add a reverse() method
+        - public void
+    - fix memory leak in remove()
+    - 
