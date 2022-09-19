@@ -1,0 +1,36 @@
+[2022-09-19]
+==> !Notes! <==
+- Metric for algorithm analysis
+    - Time complexity
+        - How fast
+    - Space complexity
+        - How much memory is used
+- Theoretical algorithm analysis
+    - Identify critical operations
+    - Count number of critical operations performed by the algorithm
+    - Express the number of critical operations as a function of the size of the input
+        - f(n)
+    - For example, the add operation in our list can take any n amount of operations
+        - Best case is we add at the items.length index, 0 shifting operationg
+        - Worst case is at the beginning, n operations
+        - 1 + 2 + 3 ... + n-1 + n would be the total addition
+        - Summation
+            - Resulting equation is (n^2 + n)/2
+            - On average, n/2
+    - Express f(n) for the worst case with the *Big O notation*
+    - For the get operation on our list, there are 0 critical operations
+    - For remove, there is a shift, but we can only remove from size-1
+        - So instead of n+1 cases for adding, we have n cases for removing
+        - Average operations are (n-1)/2
+- Execution of a program
+    - 2 things, *heap* and *execution stack*
+- A Linked Structure can be used to implement List
+    - Each element also has a reference, or *link* to the next element
+    - No shifting needed
+    - Not in adjacent memory locations
+    - Item is of Object type
+    - Next location is of Node type
+        - Node contains next item and next node
+
+==> !TODO! <==
+[ ] Lab 2 due 9/20
