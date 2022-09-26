@@ -1,0 +1,41 @@
+[2022-09-26]
+==> !Notes! <==
+- Pros of ArrayBased:
+    - Direct index accessing
+- Cons of ArrayBased:
+    - Shifting
+    - Memory pre-allocation
+    - Resizing
+- Pros of LinkedList implementation:
+    - Memory as needed/no resizing or pre-allocation
+- Cons of LinkedList:
+    - Link traversal
+    - No direct index accessing
+- Memory usage of both are on a per use basis
+    - ArrayList can be smaller with a smaller list, but quickly grows large
+- ArrayList simple operations fastest at the *end of the list*
+- LinkedList simple operations fastest at *beginning of list*
+- Adding a "tail" to the linked list can change the accessing time at the end to !0!
+    - Meaning now the slowest access for the LinkedList is now dead center
+    - Cut down worst case scenario for adding/getting
+    - However, removing with !just a tail! still takes n traversals
+        - Since you need to reassign "index-1"'s reference as well
+- We can add a "back reference" to each node
+    - Which will speed up remove
+- Results in more memory being used
+    - From 8 bytes used to !12 bytes! per item in the list
+- Called a Doubley Linked Structure (DLS)
+- We can take this further and *connect the first and last item*
+    - Allows us to have tail functionality without the datafield
+- Called a "Circular Doubley Linked Structure" (CDLS)
+
+==> !TODO! <==
+[√] Lab 3 Due 9/27
+[√] Lab 3 redo due 9/30
+[ ] Prelab 4 due 9/30
+    - Write a new Node for CDLS
+        - Need new "back" data field
+        - In constructor, have head and back reference the object itself
+            - Using "this"
+        - Also have a constructor for given head and back
+            - public CNode(Object item, CNode head, CNode back)
