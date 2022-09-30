@@ -1,0 +1,26 @@
+- Enhanced Node has both a "next" and a "back" datafield, along with "item"
+    - Should be no null references
+- Top level class has nothing but an entry point
+- "tail" is just node.getBack()
+
+==> For Lab <==
+- Initialize enhanced node to have next and back reference itself
+    - back = next = this;
+- One constructor only with item, one with next and back
+    - (item, next, back), next needs to be the second param
+- numItems is being used again, can use for empty and size
+- For adding a new Node
+    - new Node's back is index's back
+    - new Node's next is index-1's next
+    - index back needs to reference the new Node
+    - index-1's next needs to reference new Node
+- Can only call find once
+- use index-1 on find positioning for the general case
+    - Need to support for 0 index
+- Remove only needs to update 2 links
+    - index+1 back needs to be set to index-1
+    - index-1 next needs to be set to index+1
+    - update head if index is 0
+- For anlaysis
+    - data fields + all memory used in nodes
+    - for time complexity, worst case would be size/2
