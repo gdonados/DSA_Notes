@@ -1,0 +1,65 @@
+[2022-10-03]
+==> !Notes! <==
+- A simple circular linked list also exists, but instead of head has tail
+    - Final index also has reference to first index
+    - Allows indexing to last index without link traversal
+- New ADT - "Stack"
+    - push() - "add"
+    - peek() - "get"
+    - pop()  - "remove"
+    - Can use already made lists, and restrict all operations to 0
+- Stack ADT implementations
+    - boolean isEmpty()
+        - Is there something on the stack?
+    - void push(Object item)
+        - Will eventually use a generic type rather than Object
+    - Object peek();
+        - Gets what the top item is
+    - Object pop()
+        - Removes and returns top item
+    - String toString()
+        - Prints all items
+        - Convention is to collect them top to bottom
+    - Bottom of the stack should be index 0
+    - Constructor should set "top" to -1
+    - isEmpty() returns if top == -1
+    - push() checks if array is full, resize
+        - Same as list implementation
+        - items[++top] = item
+    - peek()
+        - Can't use isEmpty()
+        - if (top notequal -1), result = items[top]
+        - else, throw exception
+    - pop()
+        - result = items[top]
+        - set items[top--] to null
+    - toString()
+        - From top to bottom
+    - Pros:
+        - Simple and intuitive
+        - No shifting or traversing
+    - Cons:
+        - Resizing necessary
+        - Pre-allocation
+    - To make it into a generic implementation:
+        - Object will be replaced by "T"
+        - I think class definition needs <T> as well
+        - In the constructor, cast the new Object[] with (T[])
+            - items = (T[])new Object[];
+        - In the application program, instantiated as Stack<Type>
+    - Implementing with on demand memory allocation
+        - Top of the stack needs to be head
+        - isEmpty(), top == null
+        - push(), top = new Node(item, top);
+        - Constructor and popAll() set top = null
+        - Node<T> next for field
+- Approaches for reverse for quiz:
+    - Take from the front and add at the end
+    - Swap, first and last trade, work towards middle
+    - temp loop, reverse, reassign
+
+==> !TODO! <==
+[ ] Lab 4 due 10/4
+[ ] Quiz 2 on 10/10
+[ ] PreQuiz 2 due 10/10
+[ ] PreLab Lab 5 due 10/7
