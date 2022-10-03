@@ -58,6 +58,19 @@
     - Swap, first and last trade, work towards middle
     - temp loop, reverse, reassign
 
+- Queue ADT:
+    - First in First out design
+    - QueueInterface <T>
+        - boolean isEmpty()
+        - void enqueue(T item)
+        - T peek()
+        - T dequeue()
+        - void dequeueAll()
+        - String toString()
+    - Queue Implementation, Array Based (Resizable)
+        - Have a "back" field for last items
+        - dequeue should be the only one will shift everytime
+
 ==> !TODO! <==
 [ ] Lab 4 due 10/4
 [ ] Quiz 2 on 10/10
