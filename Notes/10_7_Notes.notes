@@ -1,0 +1,8 @@
+[2022-10-07]
+==> Notes <==
+- StackInterface<String> s;
+    s = (StackInterface<String>) class.forName(args[0]) newInstance();
+- 
+
+==> TODO <==
+

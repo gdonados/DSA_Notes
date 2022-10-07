@@ -1,0 +1,19 @@
+- Package
+    - name
+    - weight
+    - amount
+    - sender
+    - recipient
+- Sample
+    - name
+    - weight
+- Sample is the superclass of package
+- Create a Bag class to keep track
+    - Generic
+    - needs a stack collection
+    - total weight
+    - number of units
+- getWeight for package should override the one in sample
+- Also need a getUnitWeight() to update sample
+    - Should use the super getWeight()
+- 
