@@ -61,6 +61,8 @@
     - removeFront()
         - dequeue() from queue
     - peekEnd()
+        - "peekBack()"
+        - use value of back decremented in a circular fashion
     - removeEnd()
         - "dequeueEnd()"
         - decrement back in circular fashion
@@ -78,7 +80,7 @@
             - numItems++
     - insertEnd()
         - enqueue() from queue
-    - 
+    - toString() from queue is inherited
 
 ==> !TODO! <==
 [√] Lab 5 due 10/11
