@@ -1,0 +1,84 @@
+[2022-10-10]
+==> !Notes! <==
+- Queues
+    - FIFO structure
+    - Instead of always shifting everything to 0, just keep track of the first and last item indices
+    - If back == items.length, then shift all items down to beginning
+    - Increment back in "circular fashion"
+        - b = (b+1)%items.length
+    - Same with front
+        - f = (f+1)%items.length
+    
+    - Queue visual: [~][~][~][b/][/][/][/][/][/][f~][~][~]
+
+    - 4 data fields
+        - items Array
+        - front index
+        - back index
+        - numItems
+    - Method frames (RA implementation)
+        - public isEmpty()
+            - use numItems
+        - public enqueue()
+            - if array is full, resize
+            - items.back is assigned item, back is incremented in a circular fashion
+            - numItems+1
+        - protected resize()
+            - only for RA structure
+            - double the size of the array
+            - wherever front is bring it to index 0
+        - public peek()
+            - if numitems != 0
+                - result = items[front]
+        - public dequeue()
+            - result = items[front]
+            - items[front] = null
+            - front incremented in circular fashion 
+                - front = (front+1)%items.length
+            - numItems--
+    - No shifting needed, just more resizing
+    - Linked structure implementation:
+        - front is head
+        - back is tail
+        - SLS, last reference is null
+        - Method frame
+            - peek()
+                - front.getItem()
+            - dequeue()
+                - result = front.getItem()
+                - front = front.getNext()
+                - update back when front == null
+            - enqueue()
+                - new Node(item)
+                    - new nodes next will be null
+                - back.setNext(new Node(item))
+                    - Shortcut for above
+                - back = back.getNext()
+- DEQ ADT:
+    - Operations only on either end
+    - peekFront()
+        - peek() from queue
+    - removeFront()
+        - dequeue() from queue
+    - peekEnd()
+    - removeEnd()
+        - "dequeueEnd()"
+        - decrement back in circular fashion
+        - result = items[back]
+        - set items[back] = null
+        - decrement numItems
+    - insertFront()
+        - "enqueueFront()"
+            - if full array, resize()
+                - resize is inherited
+            - decrement front in circular fashion
+                - not (front-1)%items.length
+                - would end up as -1 if front it 0
+            - items[front] = item
+            - numItems++
+    - insertEnd()
+        - enqueue() from queue
+    - 
+
+==> !TODO! <==
+[√] Lab 5 due 10/11
