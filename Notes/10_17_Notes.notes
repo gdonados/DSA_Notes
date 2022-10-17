@@ -1,0 +1,155 @@
+[2022-10-17]
+==> Notes <==
+- Do not use recursion if an iterative approach can be developed simply
+- No recursion if repeated computation
+- Use recursion only if time efficieny matches, more concise to develop
+- For example, factorial
+    - n(n-1)(n-2)(n-3)...
+        - closed form solution
+    - n(n-1)!
+        - recursive solution
+    - recursive implementation
+        [java]
+        public static int rfact(int n)
+        {
+            int result = 1;
+            
+            if(n == 0)
+            {
+                result = 1;
+            }
+            else
+            {
+                result = n*rfact(n-1);
+            }
+
+            return result;
+        }
+        [end]
+    
+    - Execution stack of method
+        - say rfact(4) is called in main
+        - an n of 4 is pushed onto the stack
+        - a result of 1 is pushed onto the stack
+            - Activation record of rfact(3) is pushed onto stack
+            - result for rfact(3) is also pushed, still 1
+                - Record of rfact(2) onto stack
+                - result = 1 pushed onto stack
+                    - Record of rfact(1) onto stack
+                    - result still initialized to 1 on stack
+                        - record of rfact(0) onto stack
+                        - result = 1
+                        - base case reached
+                        - return result = 1
+                    - return 1 * 1 <= rfact(0)
+                - return 2 * 1 <= rfact(1)
+            - return 3*2 <= rfact(2)
+        - return 4*6 <= rfact(3)
+    - result in main is 24 <= rfact(4)
+    - First explicit call is the "root"
+        - Every other call is a recursive call
+    - Complexity analysis of rfact()
+        - !Critical operations!
+            - n
+        - !Execution stack operations!
+            - n+1 pushes
+            - n+1 pops
+            - 2(n+1)
+    - Closed formula definition n(n-1)(n-2)...
+        [java]
+        public static int ifact(int n)
+        {
+            int result = 1;
+
+            for(int i = 2; i <= n; i++)
+            {
+                result = result * i;
+            }
+
+            return result;
+        }
+        [end]
+
+    - Complexity analysis of ifact()
+        - !Critical Operations!
+            - n-1 multiplications
+        - !Execution Stack!
+            - 1 call to ifact(), 1 push 1 pop, 2n
+- Another example, fibonacci
+    - Sum of previous 2 numbers
+    - fib(0) = 0
+    - fib(1) = 1
+    - fib(n) = fib(n-1) + fib(n-2)
+    - recursive implementation
+        [java]
+        public static int rfib(int n)
+        {
+            int result = 1;
+
+            if(n == 0 || n == 1)
+            {
+                result = n;
+            }
+            else
+            {
+                result = rfib(n-1) + rfib(n-2);
+            }
+
+            return result;
+        }
+        [end]
+
+        - Number of calls would end up being all calls for one branch + all calls on another branch + 1
+            - 2*fib(n+1)-1
+            - Linear growth
+        - Critical operations, additions, would be being similar, number of additions for one + additions for the other - 1
+            - fib(n+1)-1
+            - Linear growth
+        - Fibonacci growth is "exponential"
+    - Iterative approach
+        [java]
+        public static int ifib(int n)
+        {
+            int result = 1;
+            int fib1 = 0;
+            int fib2 = 1;
+
+            for(int i = 2; i <= n; i++)
+            {
+                result = fib1+fib2;
+                fib2 = fib1;
+                fib1 = result;
+            }
+
+            return result;
+        }
+        [end]
+        - Critical operations would only be n-1
+        - Execution stack would be 2, 1 push 1 pop
+- Tower of Hanoi example
+    - Given 3 pegs, (initial, destination, temp), and n discs of n different sizes
+        - Can't place a larger disc on top of a smaller disc
+        - Only 1 disk can be moved at a time
+    - Given state of discs
+        - n disc at the bottom, followed by n-1, all the way to size 1, all on intial peg
+    - What is the sequence of disc moves to go form inital to destination peg
+    - Move all discs except n from I to T
+    - Move n to D
+    - Move n-1 from T to D
+    - Move n 
+    - Recursive approach
+        [java]
+        public static void solve(int n, String I, String D, String T)
+        {
+            if(n > 0)
+            {
+                solve(n-1, I, T, D);
+                System.out.println("move disk "+n+" from "+I+" to "+D);
+                solve(n-1, T, D, I);
+            }
+        }
+        [end]
+        
+==> TODO <==
+[√] Lab 6 due 10/18
+[ ] Pre-Midterm due 10/20
