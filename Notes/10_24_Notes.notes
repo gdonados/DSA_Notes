@@ -1,0 +1,47 @@
+[2022-10-24]
+==> !Notes! <==
+- Recursive Towers of Hanoi
+    [java]
+    public static void solve(int n, String I, String D, String T)
+    {
+        if(n > 0)
+        {
+            solve(n-1, I, T, D);
+            System.out.println("Move disk "+n+ " from "+I+" to "+D);
+            solve(n-1, T, D, I);
+        }
+    }
+    [end]
+- Time complexity
+    - # nodes = number of calls
+    - # of disk moves = # internal nodes
+    - Number of nodes on each level is equal to 2^k
+    - Generic geometric series is (a^(n+1)-1)/(a-1)
+    - Number of nodes is (2^n+1)-1
+    - Number of disk moves is 2^n-1
+- If we adjust the base case and stop at 1 instead, we remove a ton of calls to n = 0
+    - Reduces number of calls
+- Extending a binary tree *doubles* the amount of nodes you have
+- Problem 4: Binomial Coefficients, Pascals Triangle
+    | 1 
+    | 1 1
+    | 1 2 1
+    | 1 3 3 1
+    | 1 4 6 4 1
+    | 1 5 10 10 5 1
+    | 1 6 15 20 15 6 1
+
+    - 2D array
+    - C(n,k) = C(n-1, k-1) + C(n-1,k)
+        - [0,0] = 1
+        - Recursive approach
+        - Can also use iterative
+    - Formulaic approach
+        - Look it up too hard to type
+        - We can simplify
+            - if n-k > k
+                - Use n-k to simplify factorial
+            - else
+                - Use k to simplify factorial
+
+==> !TODO! <==
