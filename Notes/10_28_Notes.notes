@@ -1,0 +1,32 @@
+[2022-10-28]
+==> Notes <==
+- Binmoial coefficients
+    - Implementation 1
+        - Recursion
+    - Implementation 2
+        - 2D array
+        - array is of size n+1, n+1
+        - C(7,2) = C(7,5)
+            - There is symmetry
+        - Through this, you can stop at the first instance of the symmetry
+        - k by n array, where k is columns and n is rows
+        - Only need to calculate coefficients up to the ones in column k
+    - Implementation 3
+        - Formulaic approach
+        - if k > n-k
+            - simplify by k
+            - k = n - smallest factorial
+            - k+1 = n - smallest factorial + 1
+            - (n)(n-1)(n-2)...(k+1)/(n-k)!
+            - With smallest 
+                - (n)(n-1)...(n-smallest+1)/smallest!
+        - else  
+            - simplify by n-k
+            - (n)(n-1)...(n-k+1)/k!
+            - With smallest
+                - n(n-1)...(n-smallest+1)/smallest!
+        - Use ternary ? operator to determine smallest
+        - Multiply 1 by the formula factorials split into fractions
+        - 
+
+==> TODO <==
