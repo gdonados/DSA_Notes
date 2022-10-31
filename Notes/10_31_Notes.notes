@@ -1,0 +1,131 @@
+[2022-10-31]
+==> Notes <==
+- Refresher:
+    - Towers of Hanoi critical operation: Disk Moves
+        - (2^n+1)-1
+- Analysis of a tree with the following method:
+    [java]
+    solve(n ...)
+    {
+        if(n>6)
+        {
+            solve(n-1);
+            solve(n-1);
+            solve(n-1);
+        }
+    }
+    [end]
+    - Starting is 1 node,
+        - Then 3 nodes
+            - Then 9 nodes
+    - Base case of 6
+    - Final level has to be 6
+        - Number of final nodes is 3^(n-6)
+    - 3^k for intermediate levels
+    - Summation formula/geometric series for 3^k
+        - Results in (3^(n-5)-1)/2
+    - Process:
+        - Solve # of bottom nodes, will have something to do with the base case
+        - Solve for intermediate nodes
+        - Plug intermediate nodes into geometric series formula
+
+- Algorithm Design and Analysis
+    - 2 problems, searching and sorting
+    - Searching:
+        - Searching an unordered search
+            - In this case, it does not matter where we start
+            - Search key (SK) could be anywhere
+                - Current key : CK
+            - Called a "methodic search"
+            - All methodic searches will have the same analysis
+            - Pseudocode:
+            [java]
+            if(SK == CK)
+            {
+                stop -> succ, index
+            }
+            else
+            {
+                advance(index++);
+            }
+
+            Loop until index > number of elements
+            
+            return "succesful index" or -1
+            [end]
+
+            - For a collection of size n
+            - Work done for:
+                - Successful search:
+                    - Depends on the index
+                    _______________________________
+                    |i           : 0 1 2 3 4 5 n-1|
+                    |comparison  : 1 2 3 4 5 6  n |
+
+                    - Average case is sum of all cases/number of cases
+                        - sum(i)/n
+                        - (n+1)/2
+                - Unsuccessful search:
+                    - Theoretically infinite
+                    _______________________________
+                    |i           : 0 1 2 3 4 5 n-1|
+                    |comparison  : n n n n n n  n |
+
+        - Algorithm analysis using recurrence relation and backward substitution
+            - T(n) = # of ops to solve a problem of size n
+            - T(n) = 1 + T(n-1)
+                - Recurrence relation
+            - T(n-1) = 1 + T(n-2)
+                - Plug in, T(n) = 1 + 1 + T(n-2) ...
+            - Ends up being a bunch of ones + T(n-k)
+                - Written as k + T(n-k), "general term"
+            - To get base case, keep subbing
+                - When k == n
+                - n + T(0)
+        - Ordered Collection, "Sequential Search"
+            - Pseudocode:
+            [java]
+            search(index)
+            {
+                if(SK == CK)
+                {
+                    stop -> succ, index
+                }
+
+                else if(SK < CK)
+                {
+                    stop -> unsucc, index //List is ordered, if smaller than doesn't exist
+                }
+
+                else
+                {
+                    advance(index++);
+                }
+
+                stop -> unsucc, index
+            }
+            [end]  
+
+        - Successful search:
+            _________________________________
+            |i           : 0 1 2 3 4 5 n-1  |
+            |comparison  : 1 2 3 5 7 9 2n-1 |
+
+            - Average case, n^2/n, or just n
+            - Ironically, slower than unsorted, due to more checks
+        - Unsuccessful search:
+            _____________________________________
+            |i           : 0 1 2 3  4  5  n-1   |
+            |comparison  : 2 4 6 8 10 12  2n    |
+
+        - Changing order of < or == comparisons don't change the successful case speed
+        - Doing > first in the check will increase the search time by a factor of 2
+            _________________________________
+            |i           : 0 1 2 3 4 5 n-1 |
+            |comparison  : 2 3 4 5 6 7 n+1 |
+            
+            - Average case for this is (n+1)/2 + 1
+            - Difference with this is we advance with no success, instead of stopping
+            - 
+==> TODO <==
+[ ] Lab 7 due 11/1
