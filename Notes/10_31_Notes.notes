@@ -126,6 +126,18 @@
             
             - Average case for this is (n+1)/2 + 1
             - Difference with this is we advance with no success, instead of stopping
-            - 
+- !Binary Search!
+    - needs to be a *sorted list*
+    - mid index = (high+low)/2
+    - Check mid index first
+        - If match, stop
+    - If not match, check if greater or less than data at SK, mid key
+        - If less, reduce search to [low, mid-1]
+            - Adjust high to mid-1
+        - If greater, reduce search to [mid+1, high]
+            - Adjust low to mid+1
+    - Wrap entire thing in a while loop
+        - while(low <= high)
+
 ==> TODO <==
 [ ] Lab 7 due 11/1
