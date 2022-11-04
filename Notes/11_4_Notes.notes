@@ -1,0 +1,142 @@
+[2022-11-04]
+==> Notes <==
+- Binary search
+    - Needs to be a sorted collection
+    - Search key (sk)
+    - For both outcomes of a search (successful, unsuccessful), need to return an index
+    - Successful outcome
+        - Index where found
+        - Result range of [0, size()-1]
+    - Unsuccessful outcome
+        - Index where it could be inserted
+        - Result range of [0, size()]
+    - !For the lab!
+        - Need to create a integer encoding to represent search status
+        - Search returns information about outcome AND index information
+        - 1 reutrn value, which needs information on BOTH index postion AND return status
+        - Needs to be an int return, don't think it can be an array
+    [java]
+    while( lowI <= highI)
+    {
+        midI = (lowI + highI)/2
+
+        if(sk == midI)
+        {
+            Stop with a "successful" search
+
+            return encoded index and status
+        }
+        else if (sk > midI)
+        {
+            new search bounds [mid+1, highI], lowI = mid+1
+        }
+        else
+        {
+            new search bounds [lowI, mid-1], highI= mid-1
+        }
+    }
+    Stop with an unsuccessful search, return index where sk can be inserted if wanted
+    [end]
+
+    - Search tree example, n = 8 , [-9 -5 -2 0 3 6 7 9]
+    - "==" first, then ">"
+
+    |                                                    [0,7]
+    |                                                    (3)
+    |                           [0,2]   <                 ==              >       [4,7]
+    |                            (1)                                                (5)
+    |                [0,0]  <    ==        >  [2,2]                   [4,4] <        ==    >  [6,7]
+    |                (0)                       (2)                     (4)                     (6)
+    |    [0,-1] <    ==    >  [1,0] [2,1] <    ==    > [3,2] [4,3] <    ==    > [5,4]     [6,5] <    ==    > [7,7]
+    |      []                   []    []                 []    []                 []       []                 (7)
+    |                                                                                            [7,6]  <    ==    > [8,7]     
+    |                                                                                              []                 []
+
+    - n = 2^k - 1
+        - where n is size, k is search key
+    - Search comparison, number of comparisons
+
+     # of cases                           1                2                      4                          8
+                                      Best Case      Next Best Case      NextNext Best Case      NextNextNext Best Case      ...     Next Worst Case     Worst Case
+    "Successful" # of comparisons    |    1                 3                     5                          7                         2log(n+1) - 3     2log(n+1) - 1                               
+    ---------------------------------|--------------------------------------------------------------------------------------------------------------------------------
+    "Unsuccessful" # of comparisons  |                                                     2log(n+1)
+
+    - (n+1)/2 nodes on second to last level
+    - # of comparisons for worst case: 2k-1
+    - Worst case: 2log(n+1) - 1
+        - Comes from n = 2^k -1
+    - Average case is NOT HALWFAY
+        - Actually is the next worse case
+        - !Average case is! 2log(n+1) - 3
+
+- What if we change the order of comparisons?
+    - Avoid checking equality until the end
+    [java]
+    while( lowI < highI)
+    {
+        midI = (lowI + highI)/2
+
+        if(SK > midI)
+        {
+            lowI = midI+1
+        }
+        else
+        {
+            high = midI
+        }
+    }
+    if(SK == current key)      (midI would be current key i think)
+    {
+        Stop with a "successful" search
+
+        return encoded index and status
+    }
+    else
+    {
+        Stop with an unsuccessful search, return index where sk can be inserted if wanted
+    }
+    [end]
+
+    - 
+
+    - ">" first, then "<"
+
+    |                                                    [0,7]
+    |                                                     (3)
+    |                           [0,3]   <                               >          [4,7]
+    |                            (1)                                                (5)
+    |                [0,1]  <            >  [2,3]                        [4,5] <            >        [6,7]
+    |                (0)                     (2)                          (4)                         (6)
+    |    [0,0]   <        >  [1,1] [2,2] <        > [3,3]        [4,4] <        > [5,5]       [6,6] <        > [7,7]
+    |     [0]                 [1]   [2]              [3]          [4]              [5]         [6]              [7]
+    |      ==                 ==    ==               ==           ==                ==          ==              ==          !equality check only at bottom!     
+
+    - Bottom is nice and even now
+    - n = 8 = 2^3
+    - # of comparisons: log(n) + 1
+        - !for both successful and unsuccessful!
+    - Much better
+    - On early equality checking, there is a chance that you can break out very early
+        - However it is much slower on average
+    - Always end up at the proper index to return
+
+- Is there a way to get faster?
+    | T(n), number of comparisons needed to solve a problem
+    | T(n) = 1 + T(n/2)
+    | T(n/2) = 1 + T(n/4)
+    | T(n/4) = 1 + T(n/8)
+    | etc.
+    | Stop at T(1) = 1
+    | T(n) = 1 + 1 + 1 + 1 + T(n/(2^k))
+    | T(n) = k + T(n/(2^k))
+    | log(n) + 1 **
+
+    - !log is all base 2!
+    - log(n) comes from ">" comparison
+    - 1 comes from the "==" comparison 
+    - We can not get faster
+
+==> TODO <==
+[ ] Lab 8 due 11/8
+[√] Lab 7 redos due
