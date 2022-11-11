@@ -1,0 +1,38 @@
+[2022-11-11]
+==> Notes <==
+- Sorts covered:
+    - Bubble
+        - # of comparisons: n(n-1)/2
+        - # of swaps: [0, n(n-1)/2] (between, including)
+    - Improved Bubble
+        - Discrete variation
+        - Only bubble things if necessary
+        - # of comparisons: n-1, 2n-3, n(n-1)/2
+        - # of swaps: [0, n(n-1)/2]
+    - Selection
+        - Need to compare the indices of largest and where it needs to go
+            - Happends after you determine the largest
+        - # of comparisons: n(n-1)/2
+        - # of swaps: [0,n-1]
+    - Improved Selection
+        - Discrete in the number of comparisons
+        - # of comparisons: n-1, 2n-3, n(n-1)/2
+        - # of swaps: [0,n-1]
+    - Insertion
+        - # of comparisons: [n-1, n(n-1)/2]
+        - # of swaps: [0, n(n-1)/2]
+    - Improved Insertion
+        - # of comparisons: ?
+        - # of shifts: [0, n(n-1)/2]
+        - Use a binary search, only swap once corect spot is found
+    
+    - # of comparisons has to be >= number of swaps
+    - Complexity of all of them is O(n^2)
+    
+    - T(n) = 1 + T(n-1) => O(n)
+    - T(n) = 1 + T(n/2) => O(log(n))
+    - T(n) = 1+ + 2*T(n-1) => O(2^n)
+    - T(n-1) = n-1 + T(n-1) => O(n^2)
+
+==> TODO <==
+[ ] Lab 9 due 11/22
