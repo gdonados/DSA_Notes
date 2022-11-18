@@ -181,5 +181,6 @@
             - T(n) = n-1 + T(0) + T(n-1)
             - T(n) = n + T(n-1)
             - Brings us back to an exponential increase
+            
 ==> TODO <==
 
