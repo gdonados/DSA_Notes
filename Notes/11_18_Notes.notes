@@ -1,0 +1,68 @@
+[2022-11-18]
+==> Notes <==
+- Started with elementary sorting methods
+- Moved on to divide and conquer techniques
+    - Reduces from O(n^2) to O(n*log(n))
+- Quick sort, at worst, results in exponential time complexity
+- Any sequence of numbers can result in "n!" possible combinations
+- Need a cheap approach for avoiding the worst pivot possible
+    - Choose 3/5 random numbers to get a median of
+- !Base case of 2!
+
+- Lab Problem 0:
+    - Investigate a 3 way split for merge sort
+    - Step 1: Split into thirds
+    - !Assume n is a power of 3!, 3^n
+    - Each sub-array is now n/3
+    - Step 2a: Each sub array does its own merge sort
+        - Each size is now n/9
+
+- Lab Problem 1:
+    - Next step ,new merge sort with source and destination arrays
+    - Start with sub arrays, instead of splitting into them
+    - Increase sub array size by 2^n until it is the size of the holding array
+    - What if the array length is not a power of 2?
+        - Do not treat as separate cases
+        - While you still have items in both arrays, get smallest, increment smaller index
+            - When the loop ends, another loop brings down the remaining items in the larger sub array
+    - The "end" of the first array is the "start" of the second array
+
+==> TODO <==
+[ ] Lab 10 Due
+
+
+**Current lab implementation**
+[] is length that gets merged
+() are the sub arrays that are getting merged
+SIZE = 8
+
+Start = 0
+len = 2
+[(3) (4)] 1 5 6 8 9 10 2
+
+Start = 2
+3 4 [(1) (5)] 6 8 9 10 2
+
+start = 4
+3 4 1 5 [(6) (8)] 10 2
+
+start = 6
+3 4 1 5 6 8 [(10) (2)]
+
+3 4 1 5 6 8 2 10
+______________________
+Start = 0
+len = 4
+[(3 4) (1 5)] 6 8 2 10
+
+start = 4
+len = 4
+3 4 1 5 [(6 8) (2 10)]
+
+1 3 4 5 2 6 8 10
+______________________
+start = 0
+len = 8
+[(3 4 1 5) (6 8 2 10)]
+
+1 2 3 4 5 6 8 10
