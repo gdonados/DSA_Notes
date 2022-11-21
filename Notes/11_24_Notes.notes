@@ -1,0 +1,101 @@
+[2022-11-21]
+==> Notes <==
+- Review of algorithm design and analysis
+    - Searching
+        - Sequential search can work on ordered or unorded (O(n))
+        - Binary search works only one ordered (O(log(n)))
+    - Sorting
+        - Elementary sorting
+            - O(n^2)
+            - Bubble
+            - Selection
+            - Insertion
+        - Divide and conquer
+            - Merge
+                - O(n*log(n))
+            - Quick
+                - O(n^2), heavily dependent on pivot choice
+
+        - None of these are in place
+        
+- Unordered collection of items
+    - k searches
+        - k*O(n)
+    - Order then search
+        - O(n*log(n)) + k*O(log(n))
+             Sort         Search
+- Trees
+    - Nodes
+        - Root, leaf, inner
+    - Path length
+    - Tree depth
+    - Child/parent relationship
+    - Ancestor/descendent
+    - Contains an item that has a key
+        - Information in each node is an item
+        - Key is the unique identifier (UID)
+    - A tree is an ADT
+    - At worst, you must look through every key in the trees
+    - If # of children of a node <= 2, it is a binary tree
+        - 1 or 2 children per node
+    - For a general tree, each node would need its own set of children
+        - This would mean each node has an "array"
+- Binary search tree
+    - The key for a specific node is as follows:
+        - all keys in the left subtree < KEY < all keys in the right subtree
+        - This means the smallest key is always the leftmost node of the tree
+        - Conversely, the largest is the rightmost
+        - NOT NECESSARILY THE BOTTOM, LEFT/RIGHTMOST CAN BE A LEVEL HIGHER
+    - With this structure, we can traverse the tree as follows:
+        - If value is less, traverse left
+        - If greater, traverse right
+    - Searching
+        - In a successful case, we will have 2*length of the path from root to node whose key matches - 1
+    - Tree traversals
+
+             # Example tree
+                    7
+            2               8
+        1       6               10
+            4               9
+        3       5
+        - Pre-order
+            - Key -> Left subtree (LS) -> right subtree (RS)
+            - 7       [2 1 6 4 3 5]              [9 10 9]
+                - Order of traversal
+        - Post-order
+            -      LS    ->    RS -> K
+            - [1 3 5 4 6 2] [9 10 8] 7
+        - In-order
+            - LS      ->    K -> RS
+            - [1 2 3 4 5 6] 7 [8 9 10]
+                - Ends up in a sorted order
+- Tree Sort
+    - Insert all keys into initially empty bindary search tree
+    - !In-order traversal on BST!
+    - Will not be in place
+
+- How to insert into a binary search tree
+    - Search for where it could be inserted, *unsuccessful if found*
+    - Replace null link at that end with new link
+    - 2*len-1 for success
+    - 2*len for unsuccess
+- Delete
+    - Search based on key, *successful if found*
+    - If the node is a leaf (last node in tree path)
+        - Set the parent link to that node to null
+        - Return the refence to the new node, null in this case
+        - 0 work after search
+    - If the node has 1 child
+        - Set parent to the child
+        - Remove 9: (8) ->  (9) ->  (11) :: (8)  ->  (11)
+        - 0 work after search
+    - If the node has 2 children
+        - find *in-order successor*, replace the item DATA FIELD with the successor DATA FIELD, then delete the successor node
+            - Successor is left most node in the right subtree of item we are deleting
+        - Swapping data only, keeping the actual node reference at the "deleted" location, but replacing the data
+        - 0 work after search
+    - All these operations are 2*len
+
+==> TODO <==
+
