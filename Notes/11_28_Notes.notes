@@ -1,0 +1,144 @@
+[2022-11-28]
+==> Notes <==
+- Binary Search Tree (BST)
+    - Functionality
+        - retrieve()
+            - Key or key from item
+            - get information
+            - Checks equality first, then checks which subtree to descend
+                - 2 comparisons per node
+            - Costs 2*length-1 for successful retrieve
+                - length is "path length"
+            - 2*length for unsuccessful retrieve
+        - insert()
+            - Unsuccessful retrieve and attach newly allocated node
+                - Do not insert if item already exists
+            - Same costs as retrieve
+        - remove()
+            - Successful retrieve and remove node
+            - 3 different cases
+                - Leaf
+                    - Replace reference with null
+                - 1 child
+                    - Replace the reference of the parent to the child
+                - 2 children
+                    - Find in-order successor
+                        - Left most node in the right hand subtree
+                    - 2*length-1
+    - Tree sort
+        - Step 1: insert each key in input sequence as initially empty BST
+        - Step 2: in order traversal of BST
+            - Gets the ordered collection
+            - 0 comparisons, only traversal
+        - Step 1 is the only step that costs anything
+            - 2*length of path
+            - Do this for n insertions
+            - Cost for insertion is n*2*length
+    - A "perfect tree" is one that all levels are complete
+    - A "complete tree" is one that is almost perfect, but the last level is only partially full
+    - A "full tree" is one that is incomplete, but all nodes have 2 children
+    
+    - Depth
+        - Perfect tree with n nodes
+            - n = 2^k - 1
+            - Depth is how many layers down it is
+            - Depth is "k"
+            - k = log2(n+1)
+            - This means if the BST is a perfect tree, the time to insert n*2*length
+                - length = depth
+                - depth = k
+                - k = log(n) (roughly)
+                - n*2*log(n)
+                - Reuslts in O(n*log(n))
+        - Inserting example with perfect tree:
+            - Sequence: 4 6 2 5 7 1 3
+            - Insert 4
+                - Number of comparisons: 0, tree initially empty
+                
+                            4
+
+            - Insert 6
+            - 6 > 4, right subtree
+                - Number of comparisons: 2, is it equal to 4, is it less than 4
+                
+                            4
+                                    6
+
+            - Insert 2
+            - 4 == 2? no
+            - 2 < 4? yes
+                - Number of comparisons: 2
+
+                            4
+                    2                6
+
+            - Insert 5
+            - 4 == 5? no
+            - 5 < 4? no, right subtree
+            - 5 == 6? no
+            - 5 < 6? yes, left subtree of 6
+            - 4 comparisons
+
+            - Insert 7
+            - 7 == 5? no
+            - 7 < 4? no, right subtree
+            - 7 == 6?, no
+            - 7 < 6?, no, right subtree of 6
+            - 4 comparisons
+
+            - Repeat for 1 and 3, results in a perfect tree
+        
+        - Bad insertion can result in a "degenerate list"
+            - One long path, no branching done
+            - The nth insertion will get inserted into a tree of depth n-1
+            - Will result in O(n^2)
+        - n! possible number of sequences
+        - 2^(n-1) seqeuences that will result in a linear search tree
+        - This results in an overall Big O for tree sort of O(n^2)
+
+        - Another tree option: "Balanced Tree"
+            - For every node in the tree, the depth of the left subtree - depth of the right subtree is <= 1
+                - Every node needs to be balanced to be considered a balanced tree
+            - Also known as AVL trees
+            - Depth is O(log(n))
+            - insert, delete, O(log(n))
+            - To keep a tree balances, it will take O(n) effort
+            - If we balance the BST, the binary tree sort will have a complexity of O(n*log(n))
+            - Balancing as you insert prevents degeneration into a linear tree
+        
+- Still have not found a sorting method that is both O(n*log(n)) and in place
+    - Merge sort is n*log(n) but not in place
+    - Quick sort is n^2 and in place
+    - Tree sort using AVL trees is n*log(n), but not in place
+    
+- How can we determine the depth of a tree?
+    - The base case would be when there are no more subtrees
+    - The max bewteen either main subtree is the depth
+        - max(depth(LS), depth(RS))+1
+    - We can recursively collect from both sub trees to determine depth
+
+- Heaps, Priority Queues and Heap Sort
+    - ADT
+        - insert
+        - deleteMax
+            - Delete item with the largest key
+    - AVL tree
+        - Insert would cost O(log(n))
+        - deleteMax would cost O(log(n)), largest is in the rightmost node, only traversal
+        - Not in place, however
+    - An ascendingly ordered list
+        - Insert will take O(log(n)) comparisons, followed by O(n) comparisons
+        - deleteMax would cost 0, O(1), we know the largest is in the last spot
+        - Is in place
+    - Heaps 
+        - A heap is an array structure formed from a tree in which every key is larger than all the keys in the subtree
+            - All subtrees are also heaps
+        - Number of leaves in a tree can be calculated using (n+1)/2
+        - When put into an array, the children of a node can be found by using 2i+1 and 2i+2, where i is the index of the parent
+            - Child may not exist
+        - The parent of an element in an array can be found with (i-1)/2
+            - Parent does not exist for 0
+        - 
+        
+==> TODO <==
+
