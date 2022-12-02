@@ -1,0 +1,40 @@
+[2022-12-02]
+==> Notes <==
+- Delete/ insert pass back references and set those returned references as children
+    - If nothing changes to the child, it is simply set back to the same parent
+    - If the child is deleted/created, the parent then updates its reference to the new child needed
+- To ensure insert does not do duplicates, we can call retrieve and see if it is successful
+- Delete needs to have a try/catch for case where item doesnt exist
+
+- Delete left most
+    - Case 1
+        - If the root you pass in has no left nodes, and is the leftmost node itself
+        - We need to return the first child of the root
+    - Case 2
+        - delete left most finds the left most node, replaces that nodes parent reference with its child reference, then returns the root reference of the subtree
+        - Need to look ahead, cant have a current reference on the node you are deleting
+
+- int getHeight()
+    - find the height of the left, and the height of the right, then find the max between them, add 1
+    - base case: subtree is empty
+        - return 0
+    - need a helper method
+        - pass in a root
+    - protected int helperGetHeight()
+        - returns an int result
+        [java]
+        int leftHeight, int rightHeight
+        need recursive call on each subtree
+        
+        if(tNode == null)
+            result = 0
+        else
+            leftHeight = helperGetHeight(tNode.getLeftChild())
+            rightHeight = helperGetHeight(tNode.getRightChild())
+            result = (leftHeight > rightHeight ? leftHeight : rightHeight) + 1
+
+        return result
+        [end]
+
+==> TODO <==
+
