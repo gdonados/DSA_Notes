@@ -1,0 +1,137 @@
+[2022-12-05]
+==> Notes <==
+- Heaps
+    - "Max Heap"
+        - A complete binary tree in which the value in each internal node is greater than or equal to the values in the children of that node
+            - Stored in an array
+    - Children of a heap given an index:
+        - Left: 2i + 1
+        - Right: 2i + 2
+    - Parent of a given index:
+        - (i-1)/2
+    - Integer division, remove decimal
+    - Only if the index does not go over the end of the array
+    - Functionality
+        - insert(key)
+            - Insert at end
+            - Compare with parent (i-1)/2
+            - If larger, bring the parent down
+                - Keep comparing and shifting down every parent until one is hit that isnt larger
+            - Place key in correct location
+            - The height of a complete tree is O(log(n))
+                - O(log(n)) comparisons
+
+        - deleteMax()
+            - Swap root with last key in collection
+            - Continously compare that last key with each child until it is properly places
+            - "Trickle down"
+            - O(log(n))
+    
+    - Using this functionality, we can sort the collection
+    - "Heap Sort"
+        - Step 1: Build a max heap out of the collection
+            - Leaf nodes start as max heaps
+            - For i where i is the first level that is not a leaf, trickle down
+            - ~O(n/2) operations lat cost O(log(n))
+            - Results in O(n*log(n)) for this first step
+        - Step 2: 
+            - Say we have a collection: [81 59 72 41 13 22 2 33 19 5]
+            - This is already a max heap from step 1
+            - Largest is already in index 0
+                - Swap largest into place at the back of the collection
+                - Swap 81 and 5
+            - Trickle down from 0 to form smaller max heap
+                 - Remaking max heap, essentially step 1 again
+            - Take the new largest into the size-2 position
+            - Takes O(log(n))
+        
+        - All together, costs O(n*log(n))
+        - In place
+        - n*log(n)
+        - victory
+
+- Hashing
+    - Search based on key
+    - Use an array as storage
+    - Unordered
+        - Insert
+            - O(1), just put at the end
+        - Retrieve
+            - O(n)
+    - Ordered
+        - Insert
+            - O(log(n)) search + O(n) shift, just put at the end
+        - Retrieve
+            - O(log(n))
+        
+    - Use key as index in array
+        - Ideal, but impossible due to no storage large enough
+        - Id possible, O(1) for both insert and retrieve
+    
+    - Open addressing
+        - Free for all to find an open index
+    - If the hash function gives us an index where something already is, we need to find a different index
+        - "Linear probing" checks one by one in a row until empty space is found
+            - h(k) + i, i starts at 0
+            - Primary clustering
+        - "Quadratic probing" h(k) + i^2, i starts at 0
+            - Seconary clustering
+        - "Double hashing", h1(k) + i*h2(k), i starts at 0
+    
+    - Collision avoidance
+        - Generate values based on keys
+        - Types of keys:
+            - String of characters
+            - Integer
+                - Can also be a string
+        - Mapping an integer
+            - We want to use the key to generate an index in our array that is unoccupied
+            - For example, 001364825
+                - Select a few digits (in this example the 4th and 9th)
+                    - h(key) = 35
+                    - 0 <= h(k) <= 99
+                    - Bounds are formed from max value that can be formed from # of digits
+                - Another option, select a few more digits
+                    - 0 <= h(k) <= 999
+            - Another option, folding (add digits)
+                - 0+0+1+3+6+4+8+2+5 = 29
+                - h(key) = 29
+                - 0 <= h(k) <= 81
+                - 82 values
+                - Worse range of values
+            - Another option, group then add
+                - 001+264+825 = 1190
+                - Much better range
+                - 0 <= h(k) <= 2997
+                - Still can run into collisions in this small range
+            - Use modulo to keep index within array bounds
+                - h(key) = key % array.length
+        - Mapping a string
+            - Example: "tea"
+            - Step 1: map each char into alphabet ranking
+                - a -> 1
+                - b -> 2
+                ...
+                - z -> 26
+                - For our example: t -> 20, e -> 5, a -> 1
+            - Step 2: add individual char mapping
+                - h("tea") = 26 = h("ate") = h("eat")
+                    - Simply adding doesnt give much
+                - Binary mapping, 5 bit representation
+                    - 20 -> 10100
+                    - 5 -> 00101
+                    - 1 -> 00001
+                    - "tea" = 10100 00101 00001 = 20641
+                    - "eat" = 5172
+                    - "ate" = 1669
+                - Using Horners? rule
+                    - sum from i=0 to size-1 of (map(char))*32^(size-i-1)
+                    - For 't', 20*32^2
+                    - 'e', 5*32^1
+                    - 'a', 1*32^0
+                    - add
+                    - Results in 20641
+                    - Same as binary concat
+                    - Just achieves shifting the binary by 5, 10, etc
+
+==> TODO <==
