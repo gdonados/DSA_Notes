@@ -1,0 +1,43 @@
+[2022-12-09]
+==> Notes <==
+- 2 parts to hashing 
+    - Collision avoidance
+        - Avoid identical keys in the array
+        - Need a good hash function
+        - Hashing can be generated based on token/item val
+        - Different types of keys have different hashing
+        - For Strings
+            - Map each letter to numerical value
+            - "TEA" -> 21 5 1
+            - Horners rule, basically breaking them down into binary then concatentating
+            - 
+    - Collision resolution
+        - Open Addressing
+            - Linear probing
+                - Continualy check the next index, and the next, etc.
+                    - h(k) + i^2
+                    - Runs into a clustering problem
+                - Quadratic probing
+                    - h(k) + i^2
+                    - Still may have a clustering problem
+                - Double hashing
+                    - h1(k) + i*h2(k)
+                    - Key dependent
+                    - Resolves clustering a bit
+            - Open addressing runs into a resizing problem
+        - Restructured Table
+            - Use an extra structure
+                - Primary array and extra structure
+            - Using a second, small array, multiple keys can fit into the same primary key, with different secondary keys
+                - Still need to resize the smaller arrays anyway
+            - Instead of an extra array, we can use a linked structure
+                - Avoids resizing
+                - SLS list
+                - Each element in the primary array points to a head node in a linked list
+                - Still check key duplication
+                - Add element at the front
+            - HashMap in Java uses a hybrid SLS
+                - Uses a balanced BST
+                - Once the SLS gets too long, swaps over to a binary tree
+
+==> TODO <==
