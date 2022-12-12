@@ -1,0 +1,43 @@
+[2022-12-12]
+==> Notes <==
+- Reminder for final exam, 3 ways to do hashmap:
+    - Array primary array secondary
+        - O(n)
+    - Array primary SLS secondary
+        - O(n)
+    - Array primary SLS temporary secondary, AVL tree when it gets too big
+        - >= Java 8 implemented
+
+- Max heap: A complete binary tree with property that every node in max heap has key larger than any key in subtre
+    - Children of a heap given an index:
+        - Left: 2i + 1
+        - Right: 2i + 2
+    - Parent of a given index:
+        - (i-1)/2
+
+    - When inserting, insert at end of array and work backwards
+        - O(log(n))
+    - When deleting, remove the root, replace it with the last item, then trickle down that last item
+        - Order of the depth of the tree
+        - O(log(n))
+    
+- Heap sort:
+    - Create a max heap out of the collection
+        - Creat BT out of collection
+        - All leaves are already max heaps
+        - for(int i = (n/2)-1; i >= 0; i--)
+            - trickleDown(i, arrayLength) //First one you do first you dont
+        - Starts one level up from the bottom, compares both children, then the larger child to the parent
+            - Swap the larger child with the parent, no swap if parent is larger
+            - Work up the levels
+    - Next, start iterating through to get final positions
+        - Index 0 gets swapped with last index, array.length-1
+        - for(int i = array.length-1; i >= 0; i--)
+            - swap(0, i)
+            - trickleDown(0, i) //First one you do first you dont
+        - O(log(n))
+    - Overall, O(nlog(n))
+    - In place
+
+==> TODO <==
+
