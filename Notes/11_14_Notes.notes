@@ -40,6 +40,7 @@
             - Step 3 is merging, worst case is n-1 comparisons
             - 
         - T(n) = 0 + (T(n/2) + T(n/2)) + (n-1)
+        
         - 0 work for base case T(1)
         - Back-sub
             - Over estimate a bit on the upper bound, can remove -1
